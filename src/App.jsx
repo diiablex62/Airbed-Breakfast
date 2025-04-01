@@ -21,12 +21,9 @@ function App() {
   };
 
   const handleFavoriteChange = (listingId, isFavorite) => {
-    if (isFavorite) {
+    if (isFavorite && !favoriteList.includes(listingId)) {
       setFavoritesCount(favoritesCount + 1);
       setFavoriteList([...favoriteList, listingId]);
-    } else {
-      setFavoritesCount(favoritesCount - 1);
-      setFavoriteList(favoriteList.filter((id) => id !== listingId));
     }
   };
 
