@@ -7,8 +7,8 @@ export default function Logement({
   isReversed,
   onFavoriteChange,
   favoriteList,
+  filter,
 }) {
-  const [filter, setFilter] = useState("");
   const [filteredList, setFilteredList] = useState(listeMaison);
 
   useEffect(() => {
@@ -18,20 +18,9 @@ export default function Logement({
     setFilteredList(filtered);
   }, [filter]);
 
-  const handleFilterChange = (event) => {
-    setFilter(event.target.value);
-  };
-
   return (
     <div className="ml-6 mt-6">
       <h1 className="text-2xl font-bold">Logements disponibles</h1>
-      <input
-        type="text"
-        placeholder="Filtrer par ville"
-        value={filter}
-        onChange={handleFilterChange}
-        className="border border-gray-300 rounded-md p-2 mt-2"
-      />
       {!isLoggedIn ? (
         <p>Il faut être connecté pour voir les logements.</p>
       ) : (

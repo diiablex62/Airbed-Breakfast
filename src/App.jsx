@@ -11,6 +11,7 @@ function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [favoritesCount, setFavoritesCount] = useState(0);
   const [favoriteList, setFavoriteList] = useState([]);
+  const [filter, setFilter] = useState("");
 
   const handleMaisonsClick = () => {
     setIsReversed(!isReversed);
@@ -25,6 +26,10 @@ function App() {
       setFavoritesCount(favoritesCount + 1);
       setFavoriteList([...favoriteList, listingId]);
     }
+  };
+
+  const handleFilterChange = (event) => {
+    setFilter(event.target.value);
   };
 
   return (
@@ -50,6 +55,8 @@ function App() {
         onMaisonsClick={handleMaisonsClick}
         isDarkMode={isDarkMode}
         favoritesCount={favoritesCount}
+        filter={filter}
+        handleFilterChange={handleFilterChange}
       />
       <main className="flex-grow">
         <Logement
@@ -57,6 +64,7 @@ function App() {
           isReversed={isReversed}
           onFavoriteChange={handleFavoriteChange}
           favoriteList={favoriteList}
+          filter={filter}
         />
         <Avis />
       </main>

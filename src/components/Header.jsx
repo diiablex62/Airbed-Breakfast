@@ -6,6 +6,8 @@ export default function Header({
   onMaisonsClick,
   isDarkMode,
   favoritesCount,
+  filter,
+  handleFilterChange,
 }) {
   const toggleLogin = () => {
     setIsLoggedIn(!isLoggedIn);
@@ -18,6 +20,18 @@ export default function Header({
       }`}
     >
       <div className="text-xl font-bold text-red-500">Airbed & Breakfast</div>
+
+      {isLoggedIn && (
+        <div className="flex-grow flex justify-center">
+          <input
+            type="text"
+            placeholder="Filtrer par ville"
+            value={filter}
+            onChange={handleFilterChange}
+            className="border border-gray-300 rounded-md p-2 w-1/2"
+          />
+        </div>
+      )}
 
       <div className="flex items-center">
         {isLoggedIn && (
@@ -51,9 +65,7 @@ export default function Header({
                     isDarkMode ? "text-white" : "text-gray-700"
                   }`}
                 >
-                  <a href="#">
-                    Favoris ({favoritesCount})
-                  </a>
+                  <a href="#">Favoris ({favoritesCount})</a>
                 </li>
               )}
             </ul>
