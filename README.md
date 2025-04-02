@@ -1,6 +1,7 @@
 ## 🏠 Airbed & Breakfast - EXERCICE EN TAILWIND
 
-Aperçu disponible sur ce lien : <a href="https://airbedandbreakfast.netlify.app/" target="_blank" rel="noopener noreferrer"></a>
+Aperçu disponible sur ce lien : <a href="https://airbedandbreakfast.netlify.app/" target="_blank" rel="noopener noreferrer">https://airbedandbreakfast.netlify.app/</a>
+
 
 > Une application web moderne pour trouver et réserver des hébergements.
 
