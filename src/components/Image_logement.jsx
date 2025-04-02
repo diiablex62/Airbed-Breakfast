@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaTimes } from "react-icons/fa";
 import ImageModal from "./ImageModal";
 
 export default function Image_logement({
   listing,
   onFavoriteChange,
   isFavorite,
+  onRemove, // Add this prop
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedListing, setSelectedListing] = useState(null);
@@ -23,8 +24,19 @@ export default function Image_logement({
     setIsModalOpen(false);
   };
 
+  const handleRemoveClick = (event) => {
+    event.stopPropagation(); // Prevent modal from opening when clicking the remove button
+    onRemove(listing.id);
+  };
+
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden flex-shrink-0 w-64 relative">
+      <button
+        onClick={handleRemoveClick}
+        className="absolute top-2 right-2 p-1 rounded-full focus:outline-none bg-gray-200 hover:bg-gray-300"
+      >
+        <FaTimes className="h-4 w-4 text-gray-600" />
+      </button>
       <img
         src={listing.image}
         alt={listing.title}

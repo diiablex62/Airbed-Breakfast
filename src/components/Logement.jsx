@@ -31,6 +31,12 @@ export default function Logement({
     }
   };
 
+  const handleRemoveListing = (idToRemove) => {
+    setFilteredList((prevList) =>
+      prevList.filter((listing) => listing.id !== idToRemove)
+    );
+  };
+
   return (
     <div className="ml-6 mt-6">
       <h1 className="text-2xl font-bold">Logements disponibles</h1>
@@ -59,6 +65,7 @@ export default function Logement({
               listing={listing}
               onFavoriteChange={onFavoriteChange}
               isFavorite={favoriteList.includes(listing.id)}
+              onRemove={handleRemoveListing} 
             />
           ))}
         </div>
