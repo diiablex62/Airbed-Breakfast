@@ -51,7 +51,6 @@ export default function Image_logement({
         onClose={closeModal}
         image={listing.image}
         id={listing.id}
-        title={listing.title}
       />
     </div>
   );
