@@ -9,18 +9,39 @@ export default function Logement({
   favoriteList,
   filter,
 }) {
-  const [filteredList, setFilteredList] = useState(listeMaison);
+  const [filteredList, setFilteredList] = useState([]);
+  const [showWorkInProgress, setShowWorkInProgress] = useState(false);
+
+  const workInProgressListing = listeMaison.find((listing) => listing.id === 12);
 
   useEffect(() => {
-    const filtered = listeMaison.filter((listing) =>
+    const initialFiltered = listeMaison.filter((listing) => listing.id !== 12);
+
+    const filteredByLocation = initialFiltered.filter((listing) =>
       listing.location.toLowerCase().includes(filter.toLowerCase())
     );
-    setFilteredList(filtered);
+
+    setFilteredList(filteredByLocation);
   }, [filter]);
+
+  const handleWorkInProgressClick = () => {
+    setShowWorkInProgress(true);
+    if (workInProgressListing) {
+      setFilteredList((prevList) => [...prevList, workInProgressListing]);
+    }
+  };
 
   return (
     <div className="ml-6 mt-6">
       <h1 className="text-2xl font-bold">Logements disponibles</h1>
+      {isLoggedIn && (
+        <button
+          onClick={handleWorkInProgressClick}
+          className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mt-2"
+        >
+          Voir les maisons en travaux
+        </button>
+      )}
       {!isLoggedIn ? (
         <p>Il faut être connecté pour voir les logements.</p>
       ) : (

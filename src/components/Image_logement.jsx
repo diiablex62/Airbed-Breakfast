@@ -8,12 +8,14 @@ export default function Image_logement({
   isFavorite,
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedListing, setSelectedListing] = useState(null);
 
   const toggleFavorite = () => {
     onFavoriteChange(listing.id, !isFavorite);
   };
 
   const openModal = () => {
+    setSelectedListing(listing);
     setIsModalOpen(true);
   };
 
@@ -46,12 +48,17 @@ export default function Image_logement({
           }`}
         />
       </button>
-      <ImageModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        image={listing.image}
-        id={listing.id}
-      />
+      {selectedListing && (
+        <ImageModal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          image={selectedListing.image}
+          id={selectedListing.id}
+          title={selectedListing.title}
+          location={selectedListing.location}
+          price={selectedListing.price}
+        />
+      )}
     </div>
   );
 }
