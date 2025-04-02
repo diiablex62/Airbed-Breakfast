@@ -17,7 +17,7 @@ export default function Logement({
       const matchesFilter = listing.location
         .toLowerCase()
         .includes(filter.toLowerCase());
-      const isTravaux = listing.id === 12;
+      const isTravaux = listing.id === 12 
       return matchesFilter && (showTravaux || !isTravaux);
     });
     setFilteredList(filtered);
