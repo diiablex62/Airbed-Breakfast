@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaHeart } from "react-icons/fa";
+import ImageModal from "./ImageModal";
 
 export default function Image_logement({
   listing,
   onFavoriteChange,
   isFavorite,
 }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const toggleFavorite = () => {
     onFavoriteChange(listing.id, !isFavorite);
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -15,7 +26,8 @@ export default function Image_logement({
       <img
         src={listing.image}
         alt={listing.title}
-        className="w-full h-48 object-cover"
+        className="w-full h-48 object-cover cursor-pointer"
+        onClick={openModal}
       />
       <div className="p-4">
         <h2 className="font-bold text-lg text-black">{listing.title}</h2>
@@ -34,6 +46,13 @@ export default function Image_logement({
           }`}
         />
       </button>
+      <ImageModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        image={listing.image}
+        id={listing.id}
+        title={listing.title}
+      />
     </div>
   );
 }
